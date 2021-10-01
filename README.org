@@ -186,3 +186,9 @@
   ferramentas. Mas no projeto, estamos interesados na abordagem mais
   'linguisticamente motivada', no uso das árvores de dependencias e
   dos parsers estatísticos.
+
+  Existem várias ferramentas disponíveis, você tem liberdade para
+  experimentar alternativas desde que atinga os objetivos principais
+  do projeto: extração das informações e a experiência de corrigir
+  sentenças e retreinar um parser. A própria NLTK parece ter algum
+  suporte para trabalhar com [[http://www.nltk.org/howto/dependency.html][dependências]].
