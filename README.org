@@ -62,7 +62,8 @@
      possíveis erros.
 
   3. Corrigir os casos mais frequentes e inconsistentes e acrescentar
-     as sentenças corrigidas ao corpus Bosque criando um Bosque+DHBB.
+     as sentenças corrigidas ao corpus Bosque criando um
+     Bosque+DHBB. Vide próxima seção.
 
   4. Retreinar o sistema com este novo corpus.
 
@@ -111,6 +112,35 @@
   [[https://www.cs.nmsu.edu/ALP/2011/03/natural-language-processing-with-prolog-in-the-ibm-watson-system/][aqui]]. Sistemas que podem ser usados são http://xsb.sourceforge.net/
   ou https://www.swi-prolog.org/. Em [[https://racket-lang.org][Racket]] existe o [[https://docs.racket-lang.org/datalog/][Datalog]].
 
+  O projeto deve ser feito por grupos de até 3 pessoas.
+
+
+* Correção de análises sintáticas
+
+  Se vc detectar erros de análise sintática (e deverá) precisa tentar
+  ensinar o analisador sintático a aprender o estilo de texto do
+  DHBB. Mas qualquer atividade como essa precia ser avaliada, para
+  sabermos se houve mesmo algum aprendizado.
+
+  Ao detectar sentenças analisadas de forma errada, você deverá tentar
+  achar sentenças parecidas no corpus e corrigir. A correção das
+  sentenças pode ser feita de forma colaborativa, o forum do curso
+  pode ser usado para solicitar sugestões ao professor e aos colegas
+  sobre a melhor análise para o caso.
+
+  Corrigidas algumas sentenças, digamos 20-30, você deverá separar 80%
+  delas para serem adicionadas ao set de train do Bosque. E 20% delas
+  para ser adicionada ao set de test do corpus. Desta forma poderemos
+  tentar, mesmo que aproximadamente, ter alguma medida de como a
+  avaliação do modelo melhorou/piorou.
+
+  Esta parte do projeto deve ser documentada na forma de um relatório:
+  quais as análises você encontrou erradas? Como corrigiu? Como a
+  performance do sistema melhorou?
+
+  Para o efetivo treino dos sistemas, como é feito e como ter as
+  medidas de desempenho após o treino do sistema, você deve consultar
+  a documentação do sistema que escolheu.
   
 * Exemplo
 
