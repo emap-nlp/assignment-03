@@ -91,20 +91,25 @@
   árvore sintática a partir do =root= mantendo [[https://pt.wikipedia.org/wiki/M%C3%A1quina_de_estados_finita][uma máquina de estados]]
   a medida que atravessa as relações de dependência. Certas relações
   poderão sinalizar uma mudança de estado e em cada estado você irá
-  fazer alguma coisa com o próximo nó lido. Esta é uma solução boa,
-  mas muito particular para a tarefa.
+  fazer alguma coisa com o próximo nó lido. Esta é uma solução
+  simples, mas o código final potencialmente será super específico
+  para a tarefa.
 
   Uma alternativa seria converter a árvore para algum formato que
-  possa ser consultado por uma linguagem de consulta. Por exemplo,
-  você pode transformar os dados em [[https://www.w3.org/TR/rdf-primer/][RDF]] (usando
+  possa ser pesquisado por uma linguagem de consulta (ou regras) que
+  permita fácil busca por padrões
+
+  Por exemplo, você pode transformar os dados em [[https://www.w3.org/TR/rdf-primer/][RDF]] (usando
   https://github.com/acoli-repo/conll, por exemplo, ou gerando o RDF
   manualmente a partir da estrutura da árvore com [[https://rdflib.readthedocs.io/en/stable/][RDFLib]]). Estes dados
-  poderiam então ser consultados usando [[https://www.w3.org/TR/sparql11-query/][SPARQL]].
+  poderiam então ser consultados usando [[https://www.w3.org/TR/sparql11-query/][SPARQL]] e/ou manipulados via
+  regras como as que [[https://jena.apache.org/documentation/inference/index.html#rules][Jena]] oferece. Existem outros graph databases por
+  ai.
 
-  Ou você poderia usar Prolo se a partir das árvores você produzir um
+  Ou você poderia usar Prolog se a partir das árvores você produzir um
   arquivo Prolog, pode criar regras de extração dos padrões. Veja
   [[https://www.cs.nmsu.edu/ALP/2011/03/natural-language-processing-with-prolog-in-the-ibm-watson-system/][aqui]]. Sistemas que podem ser usados são http://xsb.sourceforge.net/
-  ou https://www.swi-prolog.org/.
+  ou https://www.swi-prolog.org/. Em [[https://racket-lang.org][Racket]] existe o [[https://docs.racket-lang.org/datalog/][Datalog]].
 
   
 * Exemplo
@@ -125,4 +130,4 @@
   O formato YAML é facilmente lido em várias linguagens. Em Haskell,
   https://hackage.haskell.org/package/yaml
 
-  
+ 
