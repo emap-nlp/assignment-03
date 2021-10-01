@@ -121,6 +121,8 @@
   - https://github.com/cpdoc/dhbb/blob/master/text/2236.text
   - https://github.com/cpdoc/dhbb/blob/master/text/626.text
 
+  Todos verbetes ([[https://github.com/cpdoc/dhbb/blob/master/text/2236.text#L3][biográficos]]).
+
   Seu código deve produzir um arquivo [[https://yaml.org/][YAML]] como o [[file:data.yaml]] neste
   repositório. Note que em geral, as informações que procuramos
   encontram-se na primeira sentença do primeiro parágrafo. Note que a
@@ -131,3 +133,26 @@
   https://hackage.haskell.org/package/yaml
 
  
+* Comentário
+
+  A extração de informação também pode ser feita sem a análise
+  sintática. Ferramentas como o [[https://www.ibm.com/cloud/watson-knowledge-studio][Watson Knowledge Studio]] podem ser
+  treinadas, como vimos, para reconhecer padrões em textos, isto é,
+  rotular segmentos do texto diretamente. Uma vez treinado um modelo
+  no WKS, podemos usar este modelo com o [[https://www.ibm.com/cloud/watson-natural-language-understanding][Watson NLU]] para submeter
+  textos e extrair JSON files. Ou seja, você poderia selecionar um
+  conjunto primeiros parágrafos do DHBB, carregar no WKS, treinar um
+  modelo, fazer o deploy deste modelo para o NLU que poderia ser então
+  usado para extrair padrões de todos os demais primeiros parágrafos
+  do DHBB.
+
+  Note ainda que as anotações feitas com o NLU poderiam ser usadas
+  para sinalizar possíveis análises sintáticas erradas, acelerando o
+  processo de revisão das árvores sintáticas... uma tarefa ajudando
+  outra tarefa.
+
+  Você tem total liberdade para experimentar o uso destas ferramentas
+  da IBM Cloud, a conta gratuita deve dar direito de usar as
+  ferramentas. Mas no projeto, estamos interesados na abordagem mais
+  'linguisticamente motivada', no uso das árvores de dependencias e
+  dos parsers estatísticos.
