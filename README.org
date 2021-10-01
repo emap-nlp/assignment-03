@@ -1,0 +1,129 @@
+#+title: Assignment 03 - Introdução a NLP
+
+
+* Introdução
+
+  Após estudar os capítulos 12-14 de [[https://web.stanford.edu/~jurafsky/slp3/][Speech and Language Processing]]
+  aprendemos uma tarefa importancia de processamento de texto: análise
+  sintática. Vale lembrar que em um pipeline de NLP, pode-se realizar
+  POS tagging antes ou de forma conjunta à analise sintática. Também
+  vale recordar que a estrutura sintática das sentenças geralmente é
+  feita em algum dos dois grandes paradigmas: [[https://en.wikipedia.org/wiki/Dependency_grammar][dependências]] ou
+  [[https://en.wikipedia.org/wiki/Phrase_structure_grammar][constituintes]].
+
+  A análise sintática gera uma estrutura (árvore de dependencias ou
+  estrutura de constituintes) muito útil para algumas tarefas de
+  NLP. Neste trabalho vamos aplicar árvores de dependencias para a
+  tarefa de extração de informações do DHBB. Mas para isso, você
+  deverá se familiarizar com algum parser de dependencias estatístico
+  como:
+
+  - https://lindat.mff.cuni.cz/services/udpipe/info.php
+  - https://spacy.io/
+  - https://stanfordnlp.github.io/stanza/
+
+  Obviamente, nada impede que você descubra e se apaixone por algum
+  outro sistema que não esteja na lista acima, neste caso fale conosco
+  antes de usar algum sistema diferente destes! Recomendamos usar o
+  UDPipe 1.2, por ser mais fácil de instalar e treinar (vide a
+  seguir).
+
+  Todos estes sistemas acima, para processar textos em Português,
+  aprenderam um 'modelo' usando o [[https://github.com/universaldependencies/UD_Portuguese-Bosque][corpus Bosque]]. Este modelo de algum
+  forma tenta capturar o que seria a gramática do Português mas,
+  obviamente, nenhum corpus tem todas as sentenças possíveis de uma
+  lingua, logo nenhuma ferramenta e nenhum dos seus modelos será
+  perfeito. Em especial, o corpus Bosque é pequeno, contém apenas 9
+  mil sentenças, e é basicamente composto por matérias públicadas a
+  mais de 15 anos nos jornais Folha de São Paulo e Público
+  (Portugal).
+
+* DHBB
+
+  O [[https://cpdoc.fgv.br/acervo/dhbb][DHBB]] é uma especia de enciclópedia do CPDOC com textos sobre a
+  política brasileira desde 1930. Em particular, contém verbetes sobre
+  políticos ou temas (partidos, leis, períodos). Os textos completos
+  encontram-se em https://github.com/cpdoc/dhbb/.
+
+  Durante os ciclos de atualização e revisão do DHBB, os
+  contribuidores, editores dos verbetes, foram muitos, mas em geral, o
+  formato dos verbetes sobre políticos (biográficos) segue um certo
+  padrão. Em especial, no primeiro parágrafo sempre temos a
+  apresentação do verbetado, seu nome completo, onde nasceu e data de
+  nascimento e nome dos pais.
+
+* Tarefa
+
+  Sua tarefa então será:
+
+  1. escolher um sistema, aprender a instalar e aprender a usar o
+     modelo pré-existente para Português.
+
+  2. executar o sistema em uma amostra inicial do DHBB e identificar
+     possíveis erros.
+
+  3. Corrigir os casos mais frequentes e inconsistentes e acrescentar
+     as sentenças corrigidas ao corpus Bosque criando um Bosque+DHBB.
+
+  4. Retreinar o sistema com este novo corpus.
+
+  5. Usar o sistema para fazer a análise sintática dos primeiros
+     parágrafos do DHBB e desenvolver alguma solução para extrair das
+     análises sináticas geradas informações dos verbetados:
+
+     - nome completo
+     - lugar que nasceu
+     - data de nascimento
+     - nome do pai
+     - nome da mãe
+
+  Para a correção as análises sintáticas e extração das informações,
+  você deverá se familiarizar com o formato [[https://universaldependencies.org/format.html][CoNLL-U]]. Existem
+  bibliotecas para ler arquivos neste formato:
+
+  - https://github.com/EmilStenstrom/conllu/
+  - https://hackage.haskell.org/package/hs-conllu
+
+  Uma vez que você tenha lido o formato conllu, você precisará
+  desenvolver alguma forma de extrair padrões das árvores
+  sintáticas.
+
+  A alternativa mais simples é escrever uma função que navegue pela
+  árvore sintática a partir do =root= mantendo [[https://pt.wikipedia.org/wiki/M%C3%A1quina_de_estados_finita][uma máquina de estados]]
+  a medida que atravessa as relações de dependência. Certas relações
+  poderão sinalizar uma mudança de estado e em cada estado você irá
+  fazer alguma coisa com o próximo nó lido. Esta é uma solução boa,
+  mas muito particular para a tarefa.
+
+  Uma alternativa seria converter a árvore para algum formato que
+  possa ser consultado por uma linguagem de consulta. Por exemplo,
+  você pode transformar os dados em [[https://www.w3.org/TR/rdf-primer/][RDF]] (usando
+  https://github.com/acoli-repo/conll, por exemplo, ou gerando o RDF
+  manualmente a partir da estrutura da árvore com [[https://rdflib.readthedocs.io/en/stable/][RDFLib]]). Estes dados
+  poderiam então ser consultados usando [[https://www.w3.org/TR/sparql11-query/][SPARQL]].
+
+  Ou você poderia usar Prolo se a partir das árvores você produzir um
+  arquivo Prolog, pode criar regras de extração dos padrões. Veja
+  [[https://www.cs.nmsu.edu/ALP/2011/03/natural-language-processing-with-prolog-in-the-ibm-watson-system/][aqui]]. Sistemas que podem ser usados são http://xsb.sourceforge.net/
+  ou https://www.swi-prolog.org/.
+
+  
+* Exemplo
+
+  Considere os textos:
+
+  - https://github.com/cpdoc/dhbb/blob/master/text/10.text
+  - https://github.com/cpdoc/dhbb/blob/master/text/1065.text
+  - https://github.com/cpdoc/dhbb/blob/master/text/2236.text
+  - https://github.com/cpdoc/dhbb/blob/master/text/626.text
+
+  Seu código deve produzir um arquivo [[https://yaml.org/][YAML]] como o [[file:data.yaml]] neste
+  repositório. Note que em geral, as informações que procuramos
+  encontram-se na primeira sentença do primeiro parágrafo. Note que a
+  forma com as informações são descritas varia, e nome que nem sempre
+  teremos todas as informações que buscamos.
+
+  O formato YAML é facilmente lido em várias linguagens. Em Haskell,
+  https://hackage.haskell.org/package/yaml
+
+  
