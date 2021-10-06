@@ -23,11 +23,12 @@
 
   Obviamente, nada impede que você descubra e se apaixone por algum
   outro sistema que não esteja na lista acima, neste caso fale conosco
-  antes de usar algum sistema diferente destes! Recomendamos usar o
-  UDPipe 1.2 via terminal (https://github.com/ufal/udpipe/releases/tag/v1.2.0/;
-  no zip tem instruções para compilar, para treinar veja https://ufal.mff.cuni.cz/udpipe/1/users-manual#model_training;
-  nesse mesmo link tem outras instruções de uso úteis como o de rodar o parser; o modelo pré-treinado pode ser achado
-  em https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-1659), por ser mais fácil de instalar e treinar . 
+  antes de usar algum sistema diferente destes!
+
+  Recomendamos usar o UDPipe 1.2 via terminal, no [[https://github.com/ufal/udpipe/releases/tag/v1.2.0/][udpipe-1.2.0-bin.zip]]
+  existem binários para Windows, Linux e MacOS.  O [[https://ufal.mff.cuni.cz/udpipe/1/users-manual][manual]] do sistema
+  contém instruções de uso com um modelo já existente e como
+  treinar. Modelos pré-treinados para o Português estão [[https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-1659][aqui]].
 
   Todos estes sistemas acima, para processar textos em Português,
   aprenderam um 'modelo' usando o [[https://github.com/universaldependencies/UD_Portuguese-Bosque][corpus Bosque]]. Este modelo de algum
@@ -79,7 +80,9 @@
      - nome do pai
      - nome da mãe
 
-  A tarefa de retreinar pode durar algumas horas dependendo dos parâmetros que você passar ao sistema.
+  **atenção**: a tarefa de retreinar pode durar algumas horas
+  dependendo dos parâmetros que você passar ao sistema, então não
+  deixe este projeto para o último dia da entrega!
 
   Para a correção as análises sintáticas e extração das informações,
   você deverá se familiarizar com o formato [[https://universaldependencies.org/format.html][CoNLL-U]]. Existem
@@ -141,7 +144,8 @@
 
   Esta parte do projeto deve ser documentada na forma de um relatório:
   quais as análises você encontrou erradas? Como corrigiu? Como a
-  performance do sistema melhorou analisando as que você tinha manualmente verificado e colocado como teste?
+  performance do sistema melhorou analisando as que você tinha
+  manualmente verificado e colocado como teste?
 
   Para o efetivo treino dos sistemas, como é feito e como ter as
   medidas de desempenho após o treino do sistema, você deve consultar
@@ -164,8 +168,10 @@
   forma com as informações são descritas varia, e nome que nem sempre
   teremos todas as informações que buscamos.
 
-  O formato YAML é facilmente lido em várias linguagens. Em Python, https://pypi.org/project/ruamel.yaml/ ou
-  o https://pypi.org/project/PyYAML/; em Haskell, https://hackage.haskell.org/package/yaml
+  O formato YAML é facilmente lido em várias linguagens. Em Python,
+  https://pypi.org/project/ruamel.yaml/ ou o
+  https://pypi.org/project/PyYAML/; em Haskell,
+  https://hackage.haskell.org/package/yaml
 
  
 * Comentário
