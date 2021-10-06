@@ -18,14 +18,15 @@
   como:
 
   - https://lindat.mff.cuni.cz/services/udpipe/info.php
-  - https://spacy.io/
-  - https://stanfordnlp.github.io/stanza/
+  - https://spacy.io/api/dependencyparser
+  - https://stanfordnlp.github.io/stanza/depparse.html
 
   Obviamente, nada impede que você descubra e se apaixone por algum
   outro sistema que não esteja na lista acima, neste caso fale conosco
   antes de usar algum sistema diferente destes! Recomendamos usar o
-  UDPipe 1.2, por ser mais fácil de instalar e treinar (vide a
-  seguir).
+  UDPipe 1.2 via terminal (https://github.com/ufal/udpipe/releases/tag/v1.2.0/;
+  no zip tem instruções para compilar, para treinar veja https://ufal.mff.cuni.cz/udpipe/1/users-manual#model_training;
+  nesse mesmo link tem outras instruções de uso úteis como o de rodar o parser.), por ser mais fácil de instalar e treinar . 
 
   Todos estes sistemas acima, para processar textos em Português,
   aprenderam um 'modelo' usando o [[https://github.com/universaldependencies/UD_Portuguese-Bosque][corpus Bosque]]. Este modelo de algum
@@ -39,7 +40,7 @@
 
 * DHBB
 
-  O [[https://cpdoc.fgv.br/acervo/dhbb][DHBB]] é uma especia de enciclópedia do CPDOC com textos sobre a
+  O [[https://cpdoc.fgv.br/acervo/dhbb][DHBB]] é uma espécie de enciclópedia do CPDOC com textos sobre a
   política brasileira desde 1930. Em particular, contém verbetes sobre
   políticos ou temas (partidos, leis, períodos). Os textos completos
   encontram-se em https://github.com/cpdoc/dhbb/.
@@ -77,11 +78,14 @@
      - nome do pai
      - nome da mãe
 
+  A tarefa de retreinar pode durar algumas horas dependendo dos parâmetros que você passar ao sistema.
+
   Para a correção as análises sintáticas e extração das informações,
   você deverá se familiarizar com o formato [[https://universaldependencies.org/format.html][CoNLL-U]]. Existem
   bibliotecas para ler arquivos neste formato:
 
   - https://github.com/EmilStenstrom/conllu/
+  - https://github.com/pyconll/pyconll
   - https://hackage.haskell.org/package/hs-conllu
 
   Uma vez que você tenha lido o formato conllu, você precisará
@@ -105,7 +109,7 @@
   manualmente a partir da estrutura da árvore com [[https://rdflib.readthedocs.io/en/stable/][RDFLib]]). Estes dados
   poderiam então ser consultados usando [[https://www.w3.org/TR/sparql11-query/][SPARQL]] e/ou manipulados via
   regras como as que [[https://jena.apache.org/documentation/inference/index.html#rules][Jena]] oferece. Existem outros graph databases por
-  ai.
+  aí.
 
   Ou você poderia usar Prolog se a partir das árvores você produzir um
   arquivo Prolog, pode criar regras de extração dos padrões. Veja
@@ -117,9 +121,9 @@
 
 * Correção de análises sintáticas
 
-  Se vc detectar erros de análise sintática (e deverá) precisa tentar
-  ensinar o analisador sintático a aprender o estilo de texto do
-  DHBB. Mas qualquer atividade como essa precia ser avaliada, para
+  Se você detectar erros de análise sintática (e deverá), precisa tentar
+  "ensinar" o analisador sintático a aprender o estilo de texto do
+  DHBB. Mas qualquer atividade como essa precisa ser avaliada, para
   sabermos se houve mesmo algum aprendizado.
 
   Ao detectar sentenças analisadas de forma errada, você deverá tentar
@@ -136,7 +140,7 @@
 
   Esta parte do projeto deve ser documentada na forma de um relatório:
   quais as análises você encontrou erradas? Como corrigiu? Como a
-  performance do sistema melhorou?
+  performance do sistema melhorou analisando as que você tinha manualmente verificado e colocado como teste?
 
   Para o efetivo treino dos sistemas, como é feito e como ter as
   medidas de desempenho após o treino do sistema, você deve consultar
@@ -159,8 +163,8 @@
   forma com as informações são descritas varia, e nome que nem sempre
   teremos todas as informações que buscamos.
 
-  O formato YAML é facilmente lido em várias linguagens. Em Haskell,
-  https://hackage.haskell.org/package/yaml
+  O formato YAML é facilmente lido em várias linguagens. Em Python, https://pypi.org/project/ruamel.yaml/ ou
+  o https://pypi.org/project/PyYAML/; em Haskell, https://hackage.haskell.org/package/yaml
 
  
 * Comentário
