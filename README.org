@@ -18,7 +18,7 @@
   como:
 
   - https://lindat.mff.cuni.cz/services/udpipe/info.php
-  - https://spacy.io/api/dependencyparser
+  - https://spacy.io/api/dependencyparser, veja https://spacy.io/models/pt 
   - https://stanfordnlp.github.io/stanza/depparse.html
 
   Obviamente, nada impede que você descubra e se apaixone por algum
@@ -26,7 +26,8 @@
   antes de usar algum sistema diferente destes! Recomendamos usar o
   UDPipe 1.2 via terminal (https://github.com/ufal/udpipe/releases/tag/v1.2.0/;
   no zip tem instruções para compilar, para treinar veja https://ufal.mff.cuni.cz/udpipe/1/users-manual#model_training;
-  nesse mesmo link tem outras instruções de uso úteis como o de rodar o parser.), por ser mais fácil de instalar e treinar . 
+  nesse mesmo link tem outras instruções de uso úteis como o de rodar o parser; o modelo pré-treinado pode ser achado
+  em https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-1659), por ser mais fácil de instalar e treinar . 
 
   Todos estes sistemas acima, para processar textos em Português,
   aprenderam um 'modelo' usando o [[https://github.com/universaldependencies/UD_Portuguese-Bosque][corpus Bosque]]. Este modelo de algum
