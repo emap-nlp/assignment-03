@@ -58,18 +58,9 @@
   Sua tarefa então será:
 
   1. escolher um sistema, aprender a instalar e aprender a usar o
-     modelo pré-existente para Português.
+     modelo pré-existente para Português. 
 
-  2. executar o sistema em uma amostra inicial do DHBB e identificar
-     possíveis erros.
-
-  3. Corrigir os casos mais frequentes e inconsistentes e acrescentar
-     as sentenças corrigidas ao corpus Bosque criando um
-     Bosque+DHBB. Vide próxima seção.
-
-  4. Retreinar o sistema com este novo corpus.
-
-  5. Usar o sistema para fazer a análise sintática dos primeiros
+  2. Usar o sistema para fazer a análise sintática dos primeiros
      parágrafos do DHBB e desenvolver alguma solução para extrair das
      análises sináticas geradas informações dos verbetados:
 
@@ -80,6 +71,10 @@
      - nome da mãe
 
   A tarefa de retreinar pode durar algumas horas dependendo dos parâmetros que você passar ao sistema.
+
+  Note que esse processo talvez envolva se deparar com algumas sentenças que são anotadas pelo modelo de 
+  forma errada. A ideia não é seu código de extração de informação se adequar a dados ruidosos; nesses 
+  casos a ideia é corrigir essas sentenças (ou, por exemplo, deixar de lado quando o arquivo não tem o nome dos pais; depende do caso).
 
   Para a correção as análises sintáticas e extração das informações,
   você deverá se familiarizar com o formato [[https://universaldependencies.org/format.html][CoNLL-U]]. Existem
@@ -122,30 +117,16 @@
 
 * Correção de análises sintáticas
 
-  Se você detectar erros de análise sintática (e deverá), precisa tentar
-  "ensinar" o analisador sintático a aprender o estilo de texto do
-  DHBB. Mas qualquer atividade como essa precisa ser avaliada, para
-  sabermos se houve mesmo algum aprendizado.
+  É recomendável que você trabalhe de modo incremental. Pegue um exemplo de árvore
+  e crie um código que consiga extrair as informações desta árvore. Partindo disso, rode
+  em outras sentenças, veja os erros, generalize e faça isso até ter um código com um desempenho aceitável.
 
-  Ao detectar sentenças analisadas de forma errada, você deverá tentar
-  achar sentenças parecidas no corpus e corrigir. A correção das
-  sentenças pode ser feita de forma colaborativa, o forum do curso
-  pode ser usado para solicitar sugestões ao professor e aos colegas
-  sobre a melhor análise para o caso.
-
-  Corrigidas algumas sentenças, digamos 20-30, você deverá separar 80%
-  delas para serem adicionadas ao set de train do Bosque. E 20% delas
-  para ser adicionada ao set de test do corpus. Desta forma poderemos
-  tentar, mesmo que aproximadamente, ter alguma medida de como a
-  avaliação do modelo melhorou/piorou.
-
-  Esta parte do projeto deve ser documentada na forma de um relatório:
-  quais as análises você encontrou erradas? Como corrigiu? Como a
-  performance do sistema melhorou analisando as que você tinha manualmente verificado e colocado como teste?
-
-  Para o efetivo treino dos sistemas, como é feito e como ter as
-  medidas de desempenho após o treino do sistema, você deve consultar
-  a documentação do sistema que escolheu.
+  É importante notar que, eventualmente, você irá se deparar com análises sintáticas erradas;
+  a ideia nesses casos não é fazer com que seu código consiga extrair informações até de análises 
+  erradas mas sim conseguir achá-las e corrigi-las. Nesses casos, você pode usar os fórums para 
+  tirar dúvidas de análises aparentemente erradas. Se for o caso, você pode retreinar o seu parser
+  de dependências com os novos casos manualmente corrigidos junto ao Bosque e conseguir novos 
+  parsings (se tudo der certo, estes terão menos erros). Caso isso ocorrá, explicite e documente.
   
 * Exemplo
 
