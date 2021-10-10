@@ -174,7 +174,7 @@
   https://hackage.haskell.org/package/yaml
 
  
-* Comentário
+* Comentários
 
   A extração de informação também pode ser feita sem a análise
   sintática. Ferramentas como o [[https://www.ibm.com/cloud/watson-knowledge-studio][Watson Knowledge Studio]] podem ser
@@ -203,3 +203,47 @@
   do projeto: extração das informações e a experiência de corrigir
   sentenças e retreinar um parser. A própria NLTK parece ter algum
   suporte para trabalhar com [[http://www.nltk.org/howto/dependency.html][dependências]].
+
+  Neste projeto, na maioria dos casos, a primeira sentença de cada
+  verbete conterá as informações que buscamos. Idealmente, o parser
+  deve analisar as sentenças como:
+
+  #+begin_example
+    1> «Armando Abílio Vieira» nasceu em Itaporanga (PB) no dia 29 de
+    dezembro de 1944, filho de Argemiro Abílio de Sousa e de Luísa
+    Bronzeado Vieira.
+
+    ─┮  
+     │                                 ╭─╼ « PUNCT punct 1 2  
+     │ ╭───────────────────────────────┾ Armando PROPN nsubj 2 6  
+     │ │                               ├─╼ Abílio PROPN flat:name 3 2  
+     │ │                               ├─╼ Vieira PROPN flat:name 4 2  
+     │ │                               ├─╼ » PUNCT punct 5 2  
+     ╰─┾ nasceu VERB root 6 0          │ 
+       │ ╭─╼ em ADP case 7 8           │ 
+       ├─┾ Itaporanga PROPN obl 8 6    │ 
+       │ │ ╭─╼ ( PUNCT punct 9 10      │ 
+       │ ╰─┾ PB PROPN appos 10 8       │ 
+       │   ╰─╼ ) PUNCT punct 11 10     │ 
+       │ ╭─╼ em ADP case 12 14         │ 
+       │ ├─╼ o DET det 13 14           │ 
+       ├─┾ dia NOUN obl 14 6           │ 
+       │ ├─╼ 29 NUM nummod 15 14       │ 
+       │ │ ╭─╼ de ADP case 16 17       │ 
+       │ ╰─┾ dezembro NOUN nmod 17 14  │ 
+       │   │ ╭─╼ de ADP case 18 19     │ 
+       │   ╰─┶ 1944 NUM nmod 19 17     │ 
+       │                               │ ╭─╼ , PUNCT punct 20 21  
+       │                               ╰─┾ filho NOUN acl 21 2  
+       │                                 │ ╭─╼ de ADP case 22 23  
+       │                                 ╰─┾ Argemiro PROPN nmod 23 21  
+       │                                   ├─╼ Abílio PROPN flat:name 24 23  
+       │                                   │ ╭─╼ de ADP case 25 26  
+       │                                   ├─┶ Sousa PROPN flat:name 26 23  
+       │                                   │ ╭─╼ e CCONJ cc 27 29  
+       │                                   │ ├─╼ de ADP case 28 29  
+       │                                   ╰─┾ Luísa PROPN conj 29 23  
+       │                                     ├─╼ Bronzeado PROPN flat:name 30 29  
+       │                                     ╰─╼ Vieira PROPN flat:name 31 29  
+       ╰─╼ . PUNCT punct 32 6  
+  #+end_example
